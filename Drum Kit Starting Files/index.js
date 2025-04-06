@@ -42,19 +42,38 @@ alert("You're hitting the wrong button please choose from this buttons [w,a,s,d,
 }
 
 
+//adding animation to each pressed button
+
+function addAnimation(currentButton){
+   var activeButton = document.querySelector("."+ currentButton)
+   activeButton.classList.add("pressed");
+   //the amount of time for the class pressed will be assigned to the activeButton 
+   setTimeout(function(){
+   activeButton.classList.remove("pressed")
+   }, 100);
+}
+
 // an eventListener for the buttons on the screen
 for(var i = 0 ; i< document.querySelectorAll(".drum").length ; i++){
     document.querySelectorAll("button")[i].addEventListener("click",function(){
-var buttonInnerHtml= this.innerHTML
-soundPlayer(buttonInnerHtml)
+    var buttonInnerHtml= this.innerHTML
+    console.log(buttonInnerHtml)
+    soundPlayer(buttonInnerHtml);
+    addAnimation(buttonInnerHtml);
+    
+   
 })
  
 }
 
 //an eventListener for the keyboard 
 document.addEventListener("keypress",function (event) {
-    soundPlayer(event.key)
+    soundPlayer(event.key);
+    addAnimation(event.key);
+
 })
+
+
 
 
 
